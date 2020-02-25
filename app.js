@@ -85,5 +85,5 @@ server.delete("/api/purchases/:id", (req, res) => {
     }
   }, 1000);
 });
-
-server.listen(9999);
+const port = process.env.PORT || 9999;
+server.listen(port);
