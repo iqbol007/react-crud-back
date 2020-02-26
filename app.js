@@ -21,18 +21,23 @@ server.get("/api/purchases", (req, res) => {
       res.statusCode = 500;
       res.send();
     }
-  }, 1000);
+  }, 5000);
 });
 
 server.get("/api/purchases/:id", (req, res) => {
   setTimeout(() => {
-    const id = parseInt(req.params.id, 10);
-    const description = purchases
-      .filter(o => o.id === id)
-      .map(o => o.description);
-    res.send(description);
-    return;
-  }, 1000);
+    if (Math.random() > 0.5) {
+      const id = parseInt(req.params.id, 10);
+      const description = purchases
+        .filter(o => o.id === id)
+        .map(o => o.description);
+      res.send(description);
+      return;
+    } else {
+      res.statusCode = 500;
+      res.send();
+    }
+  }, 5000);
 });
 
 server.post("/api/purchases", (req, res) => {
